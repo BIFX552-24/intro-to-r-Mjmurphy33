@@ -37,16 +37,16 @@ cats$weight <- as.numeric(cats$weight)
 cats$age <- c(2,3,5,1)
 
 # create human_age
-## your code goes here
+human_age <- cats$age * 7
 
 # convert human_age to a factor
-## your code goes here
+human_age <- as.factor(human_age)
 
 # convert human_age back to a numeric vector
-## your code goes here
+human_age <- as.numeric(as.character(human_age))
 ```
 
-Explanation: ...
+Using just `as.numeric` will cause the ages to be based on the factor level instead of the number associated with each level. To return the `human_age` from factor we need to first turn the factors into characters with `as.character` before converting them back into numeric values.
 
 <!-- Challenge 1 answer end -->
 
@@ -72,13 +72,18 @@ Then use `rbind` to add an entry for someone you work with. Finally, use `cbind`
 
 ```{r}
 # create people
-people <- ## your code goes here ##
+people <- data.frame(first_name = 'Mike',
+                     last_name = 'Murphy',
+                     lucky_num = 2)
   
 # add a team member
-## your code goes here ##
+people <- rbind(people,
+                data.frame(first_name = 'Frodo',
+                           last_name = 'Baggins',
+                           lucky_num = 1))
   
 # add coffee break
-## your code goes here ##
+people <- cbind(people, coffee_break = c(TRUE, FALSE))
   
 people
 ```
@@ -97,7 +102,12 @@ Searching for observations specifically in the middle isn't too hard, but we cou
 library(gapminder)
 data(gapminder)
 
-# your commands go here
+# look at the last few lines
+tail(gapminder)
+
+# rows in the middle
+set.seed(1234)
+gapminder[sample(1:nrow(gapminder), 6),]
 ```
 
 <!-- Challenge 3 answer end -->
@@ -112,6 +122,7 @@ Run the script using the `source` function, using the file path as its argument.
 
 ```{r}
 # load gapminder by sourcing your script here
+source('scripts/load_gapminder.R')
 ```
 
 <!-- Challenge 4 answer end -->
@@ -126,6 +137,6 @@ str(gapminder)
 
 <!-- Challenge 5 answer begin -->
 
-Explain the output of `str(gapminder)` here.
+gapminder is a tibble with 1,704 rows and 6 columns. The column names and types are "country" (factor), "continent" (factor), "year"(int), "lifeExp"(num), "pop"(int), and "gdpPercap"(num).
 
 <!-- Challenge 5 answer end -->
