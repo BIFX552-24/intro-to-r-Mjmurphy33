@@ -59,8 +59,7 @@ Repeat the exercise, graphing only for China, India, and Indonesia. Again, do no
 ```{r}
 countries_of_interest <- c("China", "India", "Indonesia")
 
-df_subset <- gapminder %>%
-  filter(country %in% countries_of_interest)
+df_subset <- gapminder[gapminder$country %in% c("China", "India", "Indonesia"),]
 
 ggplot(data = df_subset, aes(x = year, y= pop_mill)) + 
   geom_point()+
